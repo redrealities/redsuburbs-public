@@ -45,12 +45,29 @@
       color: color.toHexString(), //`rgb(${color.r}, ${color.g}, ${color.b})`,
       fillOpacity: 0.6
     }).addTo(map);
-    polygon.bindTooltip(`
-      ${name}<br>
-      Pops - ${population}<br>
-      Crime - ${crime.total}<br>
-      CR - ${crime_ratio.toFixed(2)}
-    `);
+    let tooltipContent = `
+<div class="tooltip">
+  <h3 class="tooltip__title">${name}</h3>
+
+  <div class="tooltip__stat">Population: ${population}</div>
+  <div class="tooltip__stat">Crime Rank: ${crime_ratio.toFixed(0)}/100</div>
+  <div class="tooltip__stat">Total crimes: ${crime['total']}</div>
+
+  <h4 class="tooltip__sub-title">Top 5 Crime types:</h4>
+  <div class="tooltip__crimes">
+  ` + Object.keys(crime)
+        .filter(c => c !== 'total')
+        .sort((a, b) => crime[b] - crime[a])
+        .slice(0, 5)
+        .map(crime_type => `
+        <div class="tooltip__crime">
+          <div class="tooltip__crime-name">${crime_type}</div>
+          <div class="tooltip__crime-val">${crime[crime_type]}</div>
+        </div>`).join("\n") + `
+  </div>
+</div>
+    `;
+    polygon.bindTooltip(tooltipContent);
     polygon.on('mouseover', () => polygon.setStyle({stroke: true}));
     polygon.on('mouseout', () => polygon.setStyle({stroke: false}));
   });
