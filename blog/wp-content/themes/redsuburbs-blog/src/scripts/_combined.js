@@ -10,7 +10,7 @@
     const errorEl = form.querySelector('.serverless-submit__error');
     serverless_mailer.handleForm(
       form,
-      'Crime API landing page message',
+      'RedSuburbs landing page message',
       () => successEl.textContent = 'We\'ll be in touch soon',
       error => errorEl.textContent = error
     );
