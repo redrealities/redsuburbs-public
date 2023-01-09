@@ -118,7 +118,7 @@ img {
   grid-column-gap: var(--grid-column-gap);
 }
 
-.grid__col {
+.grid__col, .grid > * {
   --cols: 1;
   grid-column-end: span var(--cols);
 }
@@ -128,7 +128,7 @@ img {
     row-gap: 20px;
   }
 
-  .grid__col {
+  .grid__col, .grid > * {
     grid-column-end: span 12;
   }
 }
@@ -199,7 +199,7 @@ img {
 .header {
   display: flex;
   align-items: center;
-  height: 80px;
+  height: 50px;
   background-color: var(--color-primary-red);
   color: white;
   box-shadow: 0 3px 5px rgba(0,0,0, 0.3);
@@ -219,13 +219,13 @@ img {
   text-decoration: none;
 
   font-weight: bold;
-  font-size: 28px;
+  font-size: 24px;
 }
 
 .header__logo-img,
 .header__logo svg {
-  width: 48px; height: 48px;
-  margin-right: 20px;
+  width: 38px; height: 38px;
+  margin-right: 10px;
 }
 
 .header__menu {
@@ -481,6 +481,10 @@ img {
   display: flex;
 }
 
+.landing-prime__form-box--multiline {
+  flex-direction: column;
+  row-gap: 10px;
+}
 
 .landing-prime__input {
   height: 54px;
@@ -492,6 +496,10 @@ img {
   color: var(--landing-black-color);
   font-size: 17px;
   margin-right: 7px;
+}
+
+.landing-prime__form-box--multiline .landing-prime__input {
+  margin-right: 0;
 }
 
 .landing-prime__input::placeholder {
@@ -510,6 +518,7 @@ img {
   color: white;
   font-size: 18px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .landing-prime__btn:hover {
@@ -648,5 +657,53 @@ img {
   .singular-page__image-box {
     width: 100vw;
     margin-left: -20px;
+  }
+}
+
+.suburb-profile__crime {
+  display: flex;
+  justify-content: space-between;
+}
+
+.suburb-profile__crime:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 3px;
+}
+
+.suburb-profile__border-suburbs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
+}
+
+.suburb-profile__chart {
+  width: 100%; height: 500px;
+  max-width: 960px; 
+  margin: 0 auto;
+}
+
+.suburb-profile__chart svg {
+  width: 100%; height: 100%;
+}
+
+.suburb-profile__chart path.slice{
+  stroke-width:2px;
+  stroke: white;
+}
+
+.suburb-profile__chart .text {
+  font-size: 14px;
+}
+
+.suburb-profile__chart polyline{
+  opacity: .3;
+  stroke: black;
+  stroke-width: 2px;
+  fill: none;
+}
+
+@media (max-width: 1023px) {
+  .suburb-profile__map-col {
+    order: 1;
   }
 }
