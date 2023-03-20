@@ -1,0 +1,602 @@
+
+:root {
+  --search-height: 50px;
+}
+
+/* index.css.tsx */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+/* App.css.tsx */
+:root {
+  --side-padding: 60px;
+}
+
+.App {
+  /*
+  position: fixed;
+  top: 0; left: 0;
+  display: flex;
+  height: 100%; width: 100%;*/
+}
+
+.Page {
+  width: 100%;
+  padding-top: 80px;
+  /*overflow-y: auto;*/
+}
+
+.Page--no-top-space {
+  padding-top: 0;
+}
+
+.Page__content {
+  box-sizing: border-box;
+  width: calc(100% - var(--side-padding) * 2);
+  max-width: 1024px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+.Page__title {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --side-padding: 20px;
+  }
+}
+
+:root {
+  --primary-red-color: #e84917;
+}
+
+a {
+  color: var(--primary-red-color);
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 0;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 65%);
+  border-radius: 2px;
+  height: 30px;
+  padding: 0 10px;
+  text-decoration: none;
+  color: #111;
+  font-weight: bold;
+}
+
+.btn--red {
+  background-color: var(--primary-red-color);
+  color: white;
+  box-shadow: none;
+}
+
+.btn--inline {
+  display: inline-flex;
+}
+
+
+.input {
+  box-sizing: border-box;
+  height: 50px;
+  line-height: 50px;
+  border: 0;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  -webkit-appearance: none;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  background-color: white;
+  border-radius: 2px;
+  padding: 0 15px;
+  color: #111;
+  font-size: 16px;
+}
+
+
+.grid {
+  display: grid;
+  --grid-size: 12;
+  --grid-column-gap: 24px;
+  grid-template-columns: repeat(var(--grid-size), 1fr);
+  grid-column-gap: var(--grid-column-gap);
+}
+
+.grid--1col { --grid-size: 1; }
+.grid--2col { --grid-size: 2; }
+.grid--3col { --grid-size: 3; }
+.grid--4col { --grid-size: 4; }
+.grid--5col { --grid-size: 5; }
+.grid--6col { --grid-size: 6; }
+.grid--7col { --grid-size: 7; }
+.grid--8col { --grid-size: 8; }
+.grid--9col { --grid-size: 9; }
+.grid--10col { --grid-size: 10; }
+.grid--11col { --grid-size: 11; }
+
+.grid__col--span2 { grid-column-end: span 2; }
+.grid__col--span3 { grid-column-end: span 3; }
+.grid__col--span4 { grid-column-end: span 4; }
+.grid__col--span5 { grid-column-end: span 5; }
+.grid__col--span6 { grid-column-end: span 6; }
+.grid__col--span7 { grid-column-end: span 7; }
+.grid__col--span8 { grid-column-end: span 8; }
+.grid__col--span9 { grid-column-end: span 9; }
+.grid__col--span10 { grid-column-end: span 10; }
+.grid__col--span11 { grid-column-end: span 11; }
+.grid__col--span12 { grid-column-end: span 12; }
+
+@media (max-width: 767px) {
+  .grid--1col,
+  .grid--2col,
+  .grid--3col,
+  .grid--4col,
+  .grid--5col,
+  .grid--6col,
+  .grid--7col,
+  .grid--8col,
+  .grid--9col,
+  .grid--10col,
+  .grid--11col,
+  .grid--12col {
+    --grid-size: 12;
+  }
+
+  .grid__col,
+  .grid__col--span2,
+  .grid__col--span3,
+  .grid__col--span4,
+  .grid__col--span5,
+  .grid__col--span6,
+  .grid__col--span7,
+  .grid__col--span8,
+  .grid__col--span9,
+  .grid__col--span10,
+  .grid__col--span11,
+  .grid__col--span12 {
+    grid-column-end: span var(--grid-size);
+    max-width: 100%;
+  }
+}
+
+
+.ContentPageHeader {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+
+  display: flex;
+  width: 100%; height: 65px;
+
+  align-items: center;
+  padding-left: 60px;
+
+  background-color: white;
+  border-bottom: 1px solid #eee;
+  
+  z-index: 10;
+}
+
+
+.ContentPageFooter {
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  font-size: 12px;
+}
+
+.ContentPageFooter__link:not(:last-child) {
+  margin-right: 10px;
+}
+
+.ContentPageFooter__link:not(:last-child)::after {
+  display: inline-block;
+  content: '|';
+  margin-left: 10px;
+  color: #111;
+}
+
+
+.Sidebar__container {
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.Sidebar__container--active {
+  pointer-events: initial;
+}
+
+.Sidebar__open-trigger {
+  position: fixed;
+  top: 10px; left: 10px;
+  width: 50px;
+  height: var(--search-height);
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  color: #111;
+  line-height: 0;
+  pointer-events: initial;
+}
+
+.Sidebar {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0; left: -300px;
+  display: flex;
+  flex-direction: column;
+  width: 300px; height: 100%;
+  background-color: white;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 65%);
+  padding: 10px;
+
+  transition: transform 300ms ease;
+}
+
+.Sidebar__container--active .Sidebar {
+  transform: translateX(100%);
+}
+
+.Sidebar__close-trigger {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0, 0.4);
+
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.Sidebar__container--active .Sidebar__close-trigger {
+  opacity: 1;
+}
+
+.Sidebar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.Sidebar__logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 22px;
+  color: #111;
+}
+
+.Sidebar__logo {
+  width: 32px;
+  margin-right: 5px;
+}
+
+.Sidebar__close-btn {
+  width: 32px; height: 32px;
+  line-height: 0;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.Sidebar__content {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.Sidebar__menu {
+  border-top: 1px solid #ccc;
+}
+
+.Sidebar__menu-item {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid #ccc;
+  padding: 0 10px;
+
+  background-image: url(legacy/styles/components/../../../../images/chevron-right-icon.svg);
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+
+.SuburbSearch {
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 280px;
+  padding: 10px;
+
+  pointer-events: none;
+}
+
+.SuburbSearch__close-trigger {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1000;
+}
+
+.SuburbSearch__search-container {
+  display: flex;
+  pointer-events: initial;
+}
+
+.SuburbSearch__search {
+  width: 100%;
+  padding-left: 50px;
+}
+
+.SuburbSearch__button {
+  position: relative;
+  width: 50px;
+  margin-left: -50px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  color: #111;
+}
+
+.SuburbSearch__results {
+  --item-height: 40px;
+
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 5px;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 65%);
+  border-radius: 2px;
+  background-color: white;
+  color: #111;
+
+  max-height: calc(var(--item-height) * 5.5);
+  overflow-y: auto;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.SuburbSearch__results--visible {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.SuburbSearch__result {
+  display: flex;
+  width: 100%;
+  border: 0;
+  background-color: white;
+  box-sizing: border-box;
+  align-items: center;
+  min-height: var(--item-height);
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #111;
+}
+
+.SuburbSearch__result:hover {
+  background-color: #ccc;
+}
+
+.SuburbSearch__result:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+@media (max-width: 768px) {
+  .SuburbSearch {
+    max-width: none;
+  }
+}
+
+
+.Logo {
+  display: inline-flex;
+  height: 32px;
+  align-items: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 22px;
+  color: #111;
+}
+
+.Logo__img {
+  width: 32px;
+  margin-right: 5px;
+}
+
+
+.SuburbProfilePage__sub-title {
+  margin-bottom: 5px;
+}
+
+.SuburbProfilePage__crime-container {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.SuburbProfilePage__crimes {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+
+.SuburbProfilePage__crime {
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-bottom: 8px;
+}
+
+.SuburbProfilePage__crime:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 8px;
+}
+
+.SuburbProfilePage__crime:nth-child(2n - 1) {
+  margin-right: 10px;
+}
+
+.SuburbProfilePage__crime-name {
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.SuburbProfilePage__crime-bar {
+  position: absolute;
+  bottom: 0; 
+  left: 0;
+  height: 4px;
+  background-color: red;
+}
+
+.SuburbProfilePage__crime-container {
+  margin-top: 30px;
+}
+
+.SuburbProfilePage__crimes {
+  display: flex;
+  flex-direction: column;
+}
+
+.SuburbProfilePage__crime {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.SuburbProfilePage__crime:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 3px;
+}
+
+.SuburbProfilePage__crime:nth-child(2n - 1) {
+  margin-right: 10px;
+}
+
+.SuburbProfilePage__crime-name {
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.SuburbProfilePage__bordering-suburbs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
+  row-gap: 10px;
+}
+
+.SuburbProfilePage__map {
+  width: 100%; height: 300px;
+  border: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.SuburbProfilePage__chart {
+  width: 100%; 
+  padding: 30px 0;
+}
+
+
+.SuburbsPage__suburbs {
+  width: 100%;
+  text-align: left;
+}
+
+.SuburbsPage__crime-rank-header {
+  width: 100px;
+}
+
+.SuburbsPage__suburb:hover {
+  background-color: #eee;
+}
+
+.SuburbsPage__suburb-name {
+  display: block;
+  height: 100%;
+}
+
+.SuburbsPage__active-key::after {
+  content: 'â';
+}
+
+.SuburbsPage__suburbs--dsc-sort .SuburbsPage__active-key::after {
+  content: 'â';
+}
+
+.SuburbsPage__suburb-actions {
+  width: 85px;
+}
+
+.SuburbsPage__pagination {
+  margin-top: 15px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .SuburbsPage__suburb-name {
+    padding: 10px 0;
+  }
+
+  .SuburbsPage__crime-rank-header {
+    width: 50px;
+  }
+
+  .SuburbsPage__actions-header {
+    display: none;
+    width: 85px;
+  }
+
+  .SuburbsPage__suburb-actions {
+    display: none;
+  }
+  
+}
+
+
+.HomePage {
+  display: flex;
+}
+
+.HomePage__map {
+  border: 0;
+  width: 100%;
+  height: 100vh;
+}
