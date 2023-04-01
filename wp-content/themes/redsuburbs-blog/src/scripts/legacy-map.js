@@ -1,4 +1,22 @@
 (function() {
+  const msg = document.querySelector('.HomePage__welcome-msg');
+  if(msg === null) return;
+  const closeBtn = msg.querySelector('.HomePage__welcome-msg-close-btn');
+  const noshowBtn = msg.querySelector('.HomePage__welcome-msg-noshow-btn');
+
+  if(localStorage.getItem('welcomeMsg') === 'hidden') {
+    msg.classList.add('HomePage__welcome-msg--hidden');
+  }
+
+  closeBtn.addEventListener('click', () => {
+    msg.classList.add('HomePage__welcome-msg--hidden');
+  });
+  noshowBtn.addEventListener('click', () => {
+    msg.classList.add('HomePage__welcome-msg--hidden');
+    localStorage.setItem('welcomeMsg', 'hidden');
+  });
+})();
+(function() {
   const map = document.querySelector('.HomePage__map');
   if(map === null) return;
   if(window.location.search !== '') {
