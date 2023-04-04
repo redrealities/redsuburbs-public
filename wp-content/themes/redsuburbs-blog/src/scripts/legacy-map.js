@@ -1,3 +1,15 @@
+function makeSuburbKey(suburb_name) {
+  search_str = suburb_name.toLowerCase();
+  search_str = search_str.replace(/-/g, '');
+  search_str = search_str.replace(/\(/g, '');
+  search_str = search_str.replace(/\)/g, '');
+  search_str = search_str.replace(/\./g, '');
+  search_str = search_str.replace(/'/g, '');
+  search_str = search_str.replace(/\s+/g, '-');
+  search_str = search_str.replace(/^\s+|\s+$/g, '');
+  return search_str;
+}
+
 (function() {
   const msg = document.querySelector('.HomePage__welcome-msg');
   if(msg === null) return;
@@ -28,17 +40,6 @@
     }
   }
 
-  function makeSuburbKey(suburb_name) {
-    search_str = suburb_name.toLowerCase();
-    search_str = search_str.replace(/-/g, '');
-    search_str = search_str.replace(/\(/g, '');
-    search_str = search_str.replace(/\)/g, '');
-    search_str = search_str.replace(/\./g, '');
-    search_str = search_str.replace(/'/g, '');
-    search_str = search_str.replace(/\s+/g, '-');
-    search_str = search_str.replace(/^\s+|\s+$/g, '');
-    return search_str;
-  }
 
   // bound is array of four floats
   function getLatLngFromBounds(bounds) {
@@ -76,24 +77,38 @@
   if(searchForm === null) return;
   const searchInput = searchForm.querySelector('input');
   // load suburb names
-  const suburbs = await fetch('/data/suburb_names.json').then(r => r.json());
+  const items = await fetch('/data/search_names.json').then(r => r.json());
+  const searchItems = [];
+  items.forEach(itemGroup => {
+    itemGroup.items.forEach(item => searchItems.push({
+      type: itemGroup.type,
+      name: item,
+      key: makeSuburbKey(item),
+    }));
+  });
+  const type_search_prefix = {
+    'suburbs': 'suburb ',
+    'lgas': 'lga ',
+    'postcodes': 'postcode ',
+  };
 
-  function filterSuburbs(suburb) {
-    return suburbs.filter(s => s.toLowerCase().includes(suburb.toLowerCase())).slice(0, 20);
+  function filterItems(search) {
+    return searchItems.filter(s => (type_search_prefix[s.type] + s.name).toLowerCase().includes(search.toLowerCase())).slice(0, 20);
   }
 
-  function renderSuburbList(suburbs) {
+  function renderItemsList(items) {
     const list = document.querySelector('.SuburbSearch__results');
     list.innerHTML = '';
-    suburbs.forEach(s => {
+    items.forEach(s => {
       const item = document.createElement('button');
       item.classList.add('SuburbSearch__result');
-      item.textContent = s;
+      item.dataset.type = type_search_prefix[s.type];
+      item.textContent = s.name;
       item.addEventListener('click', function(e) {
         e.preventDefault();
         // send message to map iframe
         console.log(item);
-        window.location.href = '/?suburb=' + item.textContent;
+        window.location.href = `/${s.type}/${s.key}/`;
       });
       list.appendChild(item);
     });
@@ -101,22 +116,24 @@
   }
 
   searchInput.addEventListener('input', function(e) {
-    const suburbs = filterSuburbs(e.target.value);
-    renderSuburbList(suburbs);
+    const items = filterItems(e.target.value);
+    console.log(items);
+    renderItemsList(items);
   });
 
   searchInput.addEventListener('blur', function() {
     setTimeout(function() {
-      renderSuburbList([]);
+      renderItemsList([]);
     }, 200);
   });
 
   searchForm.addEventListener('submit', function(e) {
     e.preventDefault();
     const query = searchInput.value;
-    const suburbs = filterSuburbs(query);
-    if(suburbs.length > 0) {
-      window.location.href = '/?suburb=' + suburbs[0];
+    const items = filterItems(query);
+    if(items.length > 0) {
+      const s = items[0];
+      window.location.href = `/${s.type}/${s.key}/`;
     }
   });
 })();
