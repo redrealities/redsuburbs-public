@@ -16,6 +16,8 @@
         let content = '';
         const fields = Array.from(formEl.querySelectorAll('input, textarea'));
         fields.forEach(field => {
+          if(field.type === 'radio' && !field.checked) return;
+          if(field.type === 'checkbox' && !field.checked) return;
           data[field.name] = field.value;
           content += field.name + ': ' + field.value + "\r\n";
         });

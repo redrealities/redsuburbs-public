@@ -33,6 +33,7 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:description" content="Crime rate profile of Millaa Millaa suburb" />
+  <script>window.feedbackFeatureName = 'Suburb Profile';</script>
 
     <link rel="stylesheet" href="https://redsuburbs.com.au/wp-content/themes/redsuburbs-blog/src/vendor/normalize.css" />
         <link rel="stylesheet" href="https://redsuburbs.com.au/wp-content/themes/redsuburbs-blog/src/styles/_legacy-combined.css" />
@@ -231,17 +232,56 @@
         <a href="/faq" class='Sidebar__menu-item'><i class="Sidebar__menu-icon" data-feather="help-circle"></i> FAQ</a>
                 <a href="/blog/crime-api" class='Sidebar__menu-item'><i class="Sidebar__menu-icon" data-feather="database"></i> Crime API</a>
         <a href="/blog" class='Sidebar__menu-item'><i class="Sidebar__menu-icon" data-feather="file-text"></i> Blog</a>
-        <a href="mailto:alex@redrealities.com?subject=RedSuburbs Feedback" class='Sidebar__menu-item'><i class="Sidebar__menu-icon" data-feather="mail"></i> Send Feedback</a>
+        <a href="mailto:alex@redrealities.com?subject=RedSuburbs Feedback" class='Sidebar__menu-item' onclick="event.preventDefault(); askFeedback('Red Suburbs');"><i class="Sidebar__menu-icon" data-feather="mail"></i> Send Feedback</a>
       </nav>
     </div>
   </div>
 </div>
 
 </div>
+  <form class="feedback-form serverless-submit">
+  <div class="feedback-form__title">Feedback</div>
+  <button class="feedback-form__close-x feedback-form__close-btn" type="button">
+    <img src="https://redsuburbs.com.au/wp-content/themes/redsuburbs-blog/src/images/x-icon.svg" alt="Close Icon" />
+  </button>
+  <div class="feedback-form__text">How was your <span class="feedback-form__placeholder" data-name="feature"></span> experience?</div>
+
+  <input class="feedback-form__radio" type="radio" name="happinnes" value="1" id="feedback-form__radio-1" required>
+  <input class="feedback-form__radio" type="radio" name="happinnes" value="2" id="feedback-form__radio-2" required>
+  <input class="feedback-form__radio" type="radio" name="happinnes" value="3" id="feedback-form__radio-3" required>
+  <input class="feedback-form__radio" type="radio" name="happinnes" value="4" id="feedback-form__radio-4" required>
+  <input class="feedback-form__radio" type="radio" name="happinnes" value="5" id="feedback-form__radio-5" required>
+
+  <div class="feedback-form__emoji-box">
+    <label class="feedback-form__emoji" for="feedback-form__radio-1">😡</label>
+    <label class="feedback-form__emoji" for="feedback-form__radio-2">😕</label>
+    <label class="feedback-form__emoji" for="feedback-form__radio-3">😐</label>
+    <label class="feedback-form__emoji" for="feedback-form__radio-4">🙂</label>
+    <label class="feedback-form__emoji" for="feedback-form__radio-5">😍</label>
+  </div>
+
+  <div class="feedback-form__text feedback-form__el--cond">
+    <span class="feedback-form__conditional-text feedback-form__cond-unhappy">We are sorry to hear that.</span>
+    <span class="feedback-form__conditional-text feedback-form__cond-happy">Thanks!</span>
+    What could be improved about it? (optional)
+  </div>
+
+  <textarea class="feedback-form__message feedback-form__el--cond" name="message" placeholder=""></textarea>
+
+  <button class="btn btn--red btn--inline" type="submit">Submit</button>&nbsp;
+  <button class="btn btn--inline feedback-form__close-btn" type="button">Close</button>
+
+  <input type="hidden" name="Form" value="Feedback"> 
+  <input type="hidden" name="Feature" value="Red Suburbs"> 
+</form>
+<div class="feedback-form__backdrop"></div>
+
   <script src="https://redsuburbs.com.au/wp-content/themes/redsuburbs-blog/src/vendor/chart.umd.js"></script>
+  <script src="https://redsuburbs.com.au/wp-content/themes/redsuburbs-blog/src/vendor/serverless_mailer.js"></script>
   <script src="https://redsuburbs.com.au/wp-content/themes/redsuburbs-blog/src/scripts/legacy-profile.js"></script>
   <script src="https://redsuburbs.com.au/wp-content/themes/redsuburbs-blog/src/scripts/legacy-sidebar.js"></script>
   <script src="https://redsuburbs.com.au/wp-content/themes/redsuburbs-blog/src/scripts/legacy-map.js"></script>
+  <script src="https://redsuburbs.com.au/wp-content/themes/redsuburbs-blog/src/scripts/legacy-feedback-form.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g==" crossorigin="anonymous"></script>
   <script>
     feather.replace()

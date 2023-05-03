@@ -228,7 +228,7 @@ a {
 
 
 .Sidebar__container {
-  position: absolute;
+  position: fixed;
   left: 0; top: 0;
   width: 100%; height: 100%;
   z-index: 1000;
@@ -460,6 +460,136 @@ a {
   margin-right: 5px;
 }
 
+
+.feedback-form {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: white;
+  z-index: 1000;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.feedback-form--visible {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.feedback-form__close-x {
+  display: flex;
+  position: absolute;
+  top: 0; right: 0;
+  background-color: transparent;
+  border: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.feedback-form__close-x img {
+  width: 32px; height: 32px;
+}
+
+.feedback-form__title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #111;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.feedback-form__text {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.feedback-form__placeholder::before {
+  content: attr(data-value);
+}
+
+.feedback-form__placeholder:not([data-value])::before {
+  content: '{' attr(data-name) '}';
+}
+
+.feedback-form__emoji-box {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.feedback-form__emoji {
+  font-size: 32px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.feedback-form__radio { display: none }
+
+.feedback-form__radio:nth-of-type(1):checked ~ .feedback-form__emoji-box .feedback-form__emoji:nth-child(1),
+.feedback-form__radio:nth-of-type(2):checked ~ .feedback-form__emoji-box .feedback-form__emoji:nth-child(2),
+.feedback-form__radio:nth-of-type(3):checked ~ .feedback-form__emoji-box .feedback-form__emoji:nth-child(3),
+.feedback-form__radio:nth-of-type(4):checked ~ .feedback-form__emoji-box .feedback-form__emoji:nth-child(4),
+.feedback-form__radio:nth-of-type(5):checked ~ .feedback-form__emoji-box .feedback-form__emoji:nth-child(5) {
+  border: 2px solid #c00;
+}
+
+.feedback-form__el--cond { display: none }
+.feedback-form__radio:checked ~ .feedback-form__el--cond { display: block }
+
+.feedback-form__conditional-text {
+  display: none;
+}
+
+.feedback-form__radio:nth-of-type(1):checked ~ .feedback-form__text .feedback-form__cond-unhappy,
+.feedback-form__radio:nth-of-type(2):checked ~ .feedback-form__text .feedback-form__cond-unhappy,
+.feedback-form__radio:nth-of-type(3):checked ~ .feedback-form__text .feedback-form__cond-unhappy {
+  display: inline;
+}
+
+.feedback-form__radio:nth-of-type(4):checked ~ .feedback-form__text .feedback-form__cond-happy,
+.feedback-form__radio:nth-of-type(5):checked ~ .feedback-form__text .feedback-form__cond-happy {
+  display: inline;
+}
+
+.feedback-form__message {
+  box-sizing: border-box;
+  width: 100%; height: 80px;
+  padding: 5px;
+  margin-bottom: 15px;
+}
+
+@media (min-width: 1024px) {
+  .feedback-form__backdrop {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 999;
+    background-color: rgba(0,0,0,0.5);
+
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .feedback-form--visible + .feedback-form__backdrop {
+    opacity: 1;
+    pointer-events: initial;
+  }
+
+  .feedback-form {
+    position: fixed;
+    top: 50%; left: 50%;
+    width: 500px; height: auto;
+    max-width: 100%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+}
 
 .SuburbProfilePage__sub-title {
   margin-bottom: 5px;
