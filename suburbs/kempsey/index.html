@@ -39,7 +39,7 @@
       </head>
   <body>
 
-<script>var chart_data = {"labels":["Theft","Justice procedures offences","Assault and related offences","Miscellaneous offences","Deception","Stalking, harassment and threatening behaviour","Property damage","Burglary\/Break and enter","Public nuisance offences","Drug use and possession","Disorderly and offensive conduct","Arson","Weapons and explosives offences","Sexual offences","Robbery","Other crimes against the person","Other government regulatory offences","Cultivate or manufacture drugs","Other drug offences","Drug dealing and trafficking"],"datasets":[{"label":"Crime rate","data":[27.29,12.71,11.29,8.94,7.76,7.53,6.35,4.24,3.53,2.35,1.65,1.41,1.18,0.94,0.94,0.71,0.47,0.24,0.24,0.24],"backgroundColor":["#267365","#F2CB05","#F29F05","#F28705","#F23030","#747F7F","#72F2EB","#FF4858","#1B7F79"],"hoverOffset":4}]};</script><div class="App">
+<script>var chart_data = {"labels":["Theft","Justice procedures offences","Assault and related offences","Miscellaneous offences","Deception","Stalking, harassment and threatening behaviour","Property damage","Burglary\/Break and enter","Public nuisance offences","Drug use and possession","Disorderly and offensive conduct","Arson","Weapons and explosives offences","Sexual offences","Robbery","Other crimes against the person","Other government regulatory offences","Cultivate or manufacture drugs","Other drug offences","Drug dealing and trafficking"],"datasets":[{"label":"Crime rate","data":[27.29,12.71,11.29,8.94,7.76,7.53,6.35,4.24,3.53,2.35,1.65,1.41,1.18,0.94,0.94,0.71,0.47,0.24,0.24,0.24],"backgroundColor":["#267365","#F2CB05","#F29F05","#F28705","#F23030","#747F7F","#72F2EB","#FF4858","#1B7F79"],"hoverOffset":4}]};var total_crimes_trend_data = {"labels":[2018,2019,2020,2021],"datasets":[{"label":"Total crimes","data":[622,655,436,425],"borderColor":"#267365","backgroundColor":"#267365"},{"label":"Total crimes trend","data":[656.0000000000291,575,494,413],"borderColor":"#267365","backgroundColor":"transparent","pointStyle":false,"borderDash":[5,5]}]};var violent_crimes_trend_data = {"labels":[2018,2019,2020,2021],"datasets":[{"label":"Violent crimes","data":[84,67,59,56],"borderColor":"#F23030","backgroundColor":"#F23030"},{"label":"Violent crimes trend","data":[80.29999999999563,71.0999999999949,61.89999999999418,52.69999999999709],"borderColor":"#F23030","backgroundColor":"transparent","pointStyle":false,"borderDash":[5,5]}]};var property_crimes_trend_data = {"labels":[2018,2019,2020,2021],"datasets":[{"label":"Property crimes","data":[329,372,183,167],"borderColor":"#F29F05","backgroundColor":"#F29F05"},{"label":"Violent crimes trend","data":[364.0000000000582,296.5000000000291,229.0000000000291,161.5000000000291],"borderColor":"#F29F05","backgroundColor":"transparent","pointStyle":false,"borderDash":[5,5]}]};</script><div class="App">
   <div class="SuburbProfilePage Page">
     <section class="ContentPageHeader">
   <a class="Logo" href="/">
@@ -105,6 +105,12 @@
           <div class="SuburbProfilePage__stats-item-value SuburbProfilePage__total-crimes">98.98%</div>
           <div class="SuburbProfilePage__stats-item-title">suburbs with less<br> Property Crimes</div>
         </div>
+      </div>
+
+      <div class="SuburbProfilePage__trends">
+        <div class="SuburbProfilePage__trend-box"><canvas class="SuburbProfilePage__trend-canvas SuburbProfilePage__trend-canvas--total"></canvas></div>
+        <div class="SuburbProfilePage__trend-box"><canvas class="SuburbProfilePage__trend-canvas SuburbProfilePage__trend-canvas--violent"></canvas></div>
+        <div class="SuburbProfilePage__trend-box"><canvas class="SuburbProfilePage__trend-canvas SuburbProfilePage__trend-canvas--property"></canvas></div>
       </div>
   
       <div class="SuburbProfilePage__crime-container grid">
@@ -244,6 +250,8 @@
   
       <a class="btn btn--inline" href="https://redsuburbs.com.au/suburbs/">Suburbs list</a>&nbsp;
       <a class="btn btn--red btn--inline" href="/?lat=-31.0623899595&lng=152.855183586&zoom=14">See on Crime Map</a>
+
+      <p class="data-period-msg">The data is based on annual 2021 data from state police departments and population data from the 2021 ABS Census. Rank is calculated for crimes weighted by severity and proportionate to population. Crime data will be updated to 2022 in June 2023.</p> 
     </section>
     <section class="ContentPageFooter">
   <nav class="ContentPageFooter__links">
@@ -270,16 +278,15 @@
     
     <div class="Sidebar__content">
       <nav class="Sidebar__menu">
-                <a href="/" class='Sidebar__menu-item'>Map</a>
-        <a href="/states" class='Sidebar__menu-item'>States</a>
-        <a href="/lgas" class='Sidebar__menu-item'>LGAs</a>
-        <a href="/suburbs" class='Sidebar__menu-item'>Suburbs</a>
-        <a href="/postcodes" class='Sidebar__menu-item'>Post Codes</a>
-        <a href="/faq" class='Sidebar__menu-item'>FAQ</a>
-        <a href="/blog/address-report" class='Sidebar__menu-item'>Address Report</a>
-        <a href="/blog/crime-api" class='Sidebar__menu-item'>Crime API</a>
-        <a href="/blog" class='Sidebar__menu-item'>Blog</a>
-        <a href="mailto:alex@redrealities.com?subject=RedSuburbs Feedback" class='Sidebar__menu-item'>Send Feedback</a>
+                <a href="/" class='Sidebar__menu-item'><i class="Sidebar__menu-icon" data-feather="map"></i> Map</a>
+        <a href="/states" class='Sidebar__menu-item'><i class="Sidebar__menu-icon" data-feather="map-pin"></i> States</a>
+        <a href="/lgas" class='Sidebar__menu-item'><i class="Sidebar__menu-icon" data-feather="map-pin"></i> LGAs</a>
+        <a href="/suburbs" class='Sidebar__menu-item'><i class="Sidebar__menu-icon" data-feather="map-pin"></i> Suburbs</a>
+        <a href="/postcodes" class='Sidebar__menu-item'><i class="Sidebar__menu-icon" data-feather="map-pin"></i> Post Codes</a>
+        <a href="/faq" class='Sidebar__menu-item'><i class="Sidebar__menu-icon" data-feather="help-circle"></i> FAQ</a>
+                <a href="/blog/crime-api" class='Sidebar__menu-item'><i class="Sidebar__menu-icon" data-feather="database"></i> Crime API</a>
+        <a href="/blog" class='Sidebar__menu-item'><i class="Sidebar__menu-icon" data-feather="file-text"></i> Blog</a>
+        <a href="mailto:alex@redrealities.com?subject=RedSuburbs Feedback" class='Sidebar__menu-item'><i class="Sidebar__menu-icon" data-feather="mail"></i> Send Feedback</a>
       </nav>
     </div>
   </div>
@@ -290,5 +297,9 @@
   <script src="https://redsuburbs.com.au/wp-content/themes/redsuburbs-blog/src/scripts/legacy-profile.js"></script>
   <script src="https://redsuburbs.com.au/wp-content/themes/redsuburbs-blog/src/scripts/legacy-sidebar.js"></script>
   <script src="https://redsuburbs.com.au/wp-content/themes/redsuburbs-blog/src/scripts/legacy-map.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g==" crossorigin="anonymous"></script>
+  <script>
+    feather.replace()
+  </script>
   </body>
 </html>

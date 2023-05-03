@@ -21,3 +21,23 @@
     },
   });
 })();
+(function() {
+  const ctxs = document.querySelectorAll('.SuburbProfilePage__trend-canvas');
+  if(ctxs.length === 0) return;
+
+  ctxs.forEach(ctx => {
+    let data = total_crimes_trend_data;
+    if(ctx.classList.contains('SuburbProfilePage__trend-canvas--violent')) {
+      data = violent_crimes_trend_data;
+    } else if(ctx.classList.contains('SuburbProfilePage__trend-canvas--property')) {
+      data = property_crimes_trend_data;
+    }
+    new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: {
+        responsive: true
+      },
+    });
+  });
+})();
