@@ -14,7 +14,7 @@
 
         e.preventDefault();
         let content = '';
-        const fields = Array.from(formEl.querySelectorAll('input, textarea'));
+        const fields = Array.from(formEl.querySelectorAll('input, textarea, select'));
         fields.forEach(field => {
           if(field.type === 'radio' && !field.checked) return;
           if(field.type === 'checkbox' && !field.checked) return;
