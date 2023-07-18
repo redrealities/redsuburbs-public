@@ -41,6 +41,7 @@
 const RedSuburbsContext = {
   state: '',
   lga: '',
+  region: '',
 };
   </script>
   <div class="SuburbsPage Page">
@@ -62,17 +63,34 @@ const RedSuburbsContext = {
                 <a class="btn btn--inline " href="https://redsuburbs.com.au/states/wa/suburbs/">WA</a>
               </p>
       
-      <div class="SuburbsPage__search-box">
-        <input 
-          class="SuburbsPage__search input" 
-          name="search"
-          type="text" 
-          placeholder="Start typing suburb name..."
-          autoComplete="off" 
-        />
-        <button class="SuburbsPage__search-btn" type="submit">
-          <img src="https://redsuburbs.com.au/wp-content/themes/redsuburbs-blog/src/images/search-icon.svg" alt="Search Icon" />
-        </button>
+      <div class="SuburbsPage__filtering">
+        <div class="SuburbsPage__search-box">
+          <input 
+            class="SuburbsPage__search input" 
+            name="search"
+            type="text" 
+            placeholder="Start typing suburb name..."
+            autoComplete="off" 
+          />
+          <button class="SuburbsPage__search-btn" type="submit">
+            <img src="https://redsuburbs.com.au/wp-content/themes/redsuburbs-blog/src/images/search-icon.svg" alt="Search Icon" />
+          </button>
+        </div>
+
+        <div class="SuburbsPage__search-sort-box">
+          <select class="SuburbsPage__search-sort input input--select">
+            <option value="name">Name</option>
+            <option value="crime_rank">Crime Rank</option>
+            <option value="population">Population</option>
+          </select>
+        </div>
+
+        <div class="SuburbsPage__search-order-box">
+          <select class="SuburbsPage__search-order input input--select">
+            <option value="desc">🞁</option>
+            <option value="asc">🞃</option>
+          </select>
+        </div>
       </div>
 
       <div class="SuburbsPage__load-indicator">
@@ -89,308 +107,328 @@ const RedSuburbsContext = {
           </tr>
         </thead>
         <tbody>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/ryan-qld/">Ryan (Qld)</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/ryan-qld/">Ryan (Qld)</a></td>
             <td class="SuburbsPage__suburb-rank">52</td>
             <td class="SuburbsPage__suburb-rank">105</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-20.7019682905&lng=139.499038429&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/ryeford/">Ryeford</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/ryeford/">Ryeford</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">54</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.932686828&lng=151.8160341085&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/rywung/">Rywung</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/rywung/">Rywung</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">18</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-26.717938215&lng=150.483319329&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sabine/">Sabine</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sabine/">Sabine</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">3</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.353217491&lng=151.7125037455&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sadliers-crossing/">Sadliers Crossing</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sadliers-crossing/">Sadliers Crossing</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">1,358</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.613758423&lng=152.746588386&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/saibai-island/">Saibai Island</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/saibai-island/">Saibai Island</a></td>
             <td class="SuburbsPage__suburb-rank">24</td>
             <td class="SuburbsPage__suburb-rank">340</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-9.3966924765&lng=142.698742814&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/salisbury-qld/">Salisbury (Qld)</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/salisbury-qld/">Salisbury (Qld)</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">6,790</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.548663767&lng=153.033787718&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/samford-valley/">Samford Valley</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/samford-valley/">Samford Valley</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">3,208</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.3704749545&lng=152.869085904&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/samford-village/">Samford Village</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/samford-village/">Samford Village</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">819</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.37437119&lng=152.884143486&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/samsonvale/">Samsonvale</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/samsonvale/">Samsonvale</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">674</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.26211794&lng=152.858044086&zoom=14">On Map</a></td>
           </tr>
+                              <tr class="SuburbsPage__suburb">
+            <td colspan="4">
+              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2783099451313822"
+                   crossorigin="anonymous"></script>
+              <!-- Suburbs list - middle -->
+              <ins class="adsbygoogle"
+                   style="display:block"
+                   data-ad-client="ca-pub-2783099451313822"
+                   data-ad-slot="7762810764"
+                   data-ad-format="auto"
+                   data-full-width-responsive="true"></ins>
+              <script>
+                   (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </td>
+          </tr>
                     <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandgate-qld/">Sandgate (Qld)</a></td>
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandgate-qld/">Sandgate (Qld)</a></td>
             <td class="SuburbsPage__suburb-rank">13</td>
             <td class="SuburbsPage__suburb-rank">4,926</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.3184595935&lng=153.0623171995&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandiford/">Sandiford</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandiford/">Sandiford</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">168</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-21.2429665265&lng=149.1063511&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandringham-qld/">Sandringham (Qld)</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandringham-qld/">Sandringham (Qld)</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">49</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-23.22306736&lng=150.5396744255&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandstone-point/">Sandstone Point</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandstone-point/">Sandstone Point</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">4,094</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.074843632&lng=153.130022337&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandy-camp/">Sandy Camp</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandy-camp/">Sandy Camp</a></td>
             <td class="SuburbsPage__suburb-rank">13</td>
             <td class="SuburbsPage__suburb-rank">104</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.976042825&lng=151.8078046115&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandy-creek-qld/">Sandy Creek (Qld)</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandy-creek-qld/">Sandy Creek (Qld)</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">593</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-26.858585396&lng=152.6425616595&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandy-pocket/">Sandy Pocket</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandy-pocket/">Sandy Pocket</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">38</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-17.6599182555&lng=146.038745763&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandy-ridges/">Sandy Ridges</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sandy-ridges/">Sandy Ridges</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">111</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-26.5151458435&lng=152.0307217545&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sapphire-central/">Sapphire Central</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sapphire-central/">Sapphire Central</a></td>
             <td class="SuburbsPage__suburb-rank">11</td>
             <td class="SuburbsPage__suburb-rank">1,214</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-23.473049921&lng=147.754899505&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sarabah/">Sarabah</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sarabah/">Sarabah</a></td>
             <td class="SuburbsPage__suburb-rank">15</td>
             <td class="SuburbsPage__suburb-rank">68</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-28.1192389605&lng=153.1201461765&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sarina/">Sarina</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sarina/">Sarina</a></td>
             <td class="SuburbsPage__suburb-rank">16</td>
             <td class="SuburbsPage__suburb-rank">5,619</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-21.435749547&lng=149.18187757&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sarina-beach/">Sarina Beach</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sarina-beach/">Sarina Beach</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">661</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-21.385676356&lng=149.280704016&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sarina-range/">Sarina Range</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sarina-range/">Sarina Range</a></td>
             <td class="SuburbsPage__suburb-rank">13</td>
             <td class="SuburbsPage__suburb-rank">277</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-21.5604345285&lng=149.1249145645&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/saunders-beach/">Saunders Beach</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/saunders-beach/">Saunders Beach</a></td>
             <td class="SuburbsPage__suburb-rank">19</td>
             <td class="SuburbsPage__suburb-rank">385</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-19.1613193205&lng=146.6059514625&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/saxby/">Saxby</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/saxby/">Saxby</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">35</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-19.907247581&lng=142.688784212&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scarborough-qld/">Scarborough (Qld)</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scarborough-qld/">Scarborough (Qld)</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">9,178</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.203742427&lng=153.1096485535&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scarness/">Scarness</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scarness/">Scarness</a></td>
             <td class="SuburbsPage__suburb-rank">29</td>
             <td class="SuburbsPage__suburb-rank">3,646</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-25.2888038055&lng=152.853864441&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scotchy-pocket/">Scotchy Pocket</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scotchy-pocket/">Scotchy Pocket</a></td>
             <td class="SuburbsPage__suburb-rank">20</td>
             <td class="SuburbsPage__suburb-rank">55</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-26.0032323895&lng=152.5306882035&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scottville/">Scottville</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scottville/">Scottville</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">279</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-20.573499555&lng=147.8204507305&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scrub-creek/">Scrub Creek</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scrub-creek/">Scrub Creek</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">33</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.0238433815&lng=152.429179565&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scrubby-creek-blackall-tambo-qld/">Scrubby Creek (Blackall Tambo - Qld)</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scrubby-creek-blackall-tambo-qld/">Scrubby Creek (Blackall Tambo - Qld)</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">14</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-25.5680561155&lng=145.71568001&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scrubby-creek-gympie-qld/">Scrubby Creek (Gympie - Qld)</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scrubby-creek-gympie-qld/">Scrubby Creek (Gympie - Qld)</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">62</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-26.2223421955&lng=152.5739732845&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scrubby-mountain/">Scrubby Mountain</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/scrubby-mountain/">Scrubby Mountain</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">203</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.7680093045&lng=151.5901246635&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/seaforth-qld/">Seaforth (Qld)</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/seaforth-qld/">Seaforth (Qld)</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">800</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-20.9243885295&lng=148.9265851405&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/seisia/">Seisia</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/seisia/">Seisia</a></td>
             <td class="SuburbsPage__suburb-rank">27</td>
             <td class="SuburbsPage__suburb-rank">293</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-10.8485539625&lng=142.3640817715&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/selene/">Selene</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/selene/">Selene</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">27</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-25.009639761&lng=151.132280984&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/selwyn-qld/">Selwyn (Qld)</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/selwyn-qld/">Selwyn (Qld)</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">25</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-21.8423207125&lng=140.575621754&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/septimus/">Septimus</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/septimus/">Septimus</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">120</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-21.276216791&lng=148.71203988&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/seven-hills-qld/">Seven Hills (Qld)</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/seven-hills-qld/">Seven Hills (Qld)</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">2,732</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.480253466&lng=153.077810013&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/seventeen-mile/">Seventeen Mile</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/seventeen-mile/">Seventeen Mile</a></td>
             <td class="SuburbsPage__suburb-rank">14</td>
             <td class="SuburbsPage__suburb-rank">22</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.458402193&lng=152.17084312&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/seventeen-mile-rocks/">Seventeen Mile Rocks</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/seventeen-mile-rocks/">Seventeen Mile Rocks</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">2,699</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.5479529235&lng=152.9558816665&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/seventeen-seventy/">Seventeen Seventy</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/seventeen-seventy/">Seventeen Seventy</a></td>
             <td class="SuburbsPage__suburb-rank">21</td>
             <td class="SuburbsPage__suburb-rank">125</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-24.1734103265&lng=151.8841449605&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/seventy-mile/">Seventy Mile</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/seventy-mile/">Seventy Mile</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">204</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-20.620440017&lng=146.5857910795&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/severnlea/">Severnlea</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/severnlea/">Severnlea</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">382</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-28.704368842&lng=151.915692503&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sexton/">Sexton</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sexton/">Sexton</a></td>
             <td class="SuburbsPage__suburb-rank">15</td>
             <td class="SuburbsPage__suburb-rank">187</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-26.0396853785&lng=152.4817564525&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/shailer-park/">Shailer Park</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/shailer-park/">Shailer Park</a></td>
             <td class="SuburbsPage__suburb-rank">15</td>
             <td class="SuburbsPage__suburb-rank">12,182</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-27.6506354625&lng=153.1754034955&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/shannonvale/">Shannonvale</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/shannonvale/">Shannonvale</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">194</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-16.510960846&lng=145.325376757&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sharon/">Sharon</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sharon/">Sharon</a></td>
             <td class="SuburbsPage__suburb-rank">10</td>
             <td class="SuburbsPage__suburb-rank">1,209</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-24.870841347&lng=152.2451664225&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/shaw/">Shaw</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/shaw/">Shaw</a></td>
             <td class="SuburbsPage__suburb-rank">35</td>
             <td class="SuburbsPage__suburb-rank">760</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-19.2778433285&lng=146.6976354665&zoom=14">On Map</a></td>
           </tr>
-                    <tr class="SuburbsPage__suburb">
-          <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sheep-station-creek/">Sheep Station Creek</a></td>
+                              <tr class="SuburbsPage__suburb">
+            <td><a class="SuburbsPage__suburb-name" href="https://redsuburbs.com.au/suburbs/sheep-station-creek/">Sheep Station Creek</a></td>
             <td class="SuburbsPage__suburb-rank">12</td>
             <td class="SuburbsPage__suburb-rank">116</td>
             <td class="SuburbsPage__suburb-actions"><a class="SuburbsPage__suburb-btn btn btn--inline btn--red" href="/?lat=-26.8538493995&lng=152.473662349&zoom=14">On Map</a></td>
           </tr>
                   </tbody>
       </table>
+
+      <div class="SuburbsPage__load-more-box" style="display: none;">
+        <button class="SuburbsPage__load-more btn btn--red">Show More</button>
+      </div>
 
       <div class="SuburbsPage__pagination">
                   <a class="SuburbsPage__pagination-btn btn btn--inline" href="https://redsuburbs.com.au/suburbs/page/192/">Prev</a>

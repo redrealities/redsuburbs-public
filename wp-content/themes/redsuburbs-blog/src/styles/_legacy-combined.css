@@ -121,6 +121,13 @@ a {
   font-size: 16px;
 }
 
+.input--select {
+  background-image: url(legacy/styles/elements/'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 24px 24px;
+  padding-right: 40px;
+}
 
 .grid {
   display: grid;
@@ -801,14 +808,27 @@ a {
   width: 85px;
 }
 
+.SuburbsPage__load-more-box {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
 .SuburbsPage__pagination {
   margin-top: 15px;
   text-align: center;
 }
 
+.SuburbsPage__filtering {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+}
+
 .SuburbsPage__search-box {
   position: relative;
   margin-bottom: 15px;
+  flex-grow: 1;
 }
 
 .SuburbsPage__search {
@@ -822,6 +842,32 @@ a {
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.SuburbsPage__search-sort-box {
+  display: flex;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.SuburbsPage__search-sort-box::before {
+  content: 'Sort by: ';
+  position: absolute;
+  top: 50%; left: 15px;
+  transform: translateY(-50%);
+  font-weight: bold;
+}
+
+.SuburbsPage__search-sort {
+  width: 100%;
+  padding-left: 85px;
+}
+
+.SuburbsPage__search-order {
+  -webkit-appearance: none;
+  padding: 0 15px;
+  background-image: none;
+  font-size: 24px;
 }
 
 .SuburbsPage__load-indicator {
@@ -844,6 +890,12 @@ a {
 @keyframes spin {
   0% { transform: translate(-50%, -50%) rotate(0deg); }
   100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@media (min-width: 769px) {
+  .SuburbsPage__filtering {
+    flex-wrap: nowrap;
+  }
 }
 
 @media (max-width: 768px) {
@@ -875,7 +927,7 @@ a {
 .HomePage__map {
   border: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 100px);
 }
 
 .HomePage__welcome-msg {
@@ -906,8 +958,35 @@ a {
   margin-bottom: 0;
 }
 
+.HomePage__footer {
+  display: block;
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 100%;
+  max-width:728px; max-height: 100px;
+}
+
+.HomePage__footer[data-ad-status="unfilled"] {
+  display: none !important;
+}
+
+.HomePage__footer[data-ad-status="unfilled"] ~ .HomePage__map {
+  height: 100%;
+}
+
 @media (max-width: 768px) {
   .HomePage__welcome-msg {
     top: 70px;
+  }
+}
+
+@media (min-width: 769px) {
+  .HomePage__map {
+    height: 100%;
+  }
+
+  .HomePage__footer {
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
