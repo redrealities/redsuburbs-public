@@ -1,1 +1,69 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Crime Map of Australia - RedSuburbs</title><link rel="icon" href="/embed-map/favicon.svg" type="image/svg+xml"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/><meta name="theme-color" content="#000000"/><link rel="apple-touch-icon" href="/embed-map/logo192.png"/><link rel="stylesheet" href="/embed-map/vendor/normalize/normalize.min.css"/><script defer="defer" src="/embed-map/static/js/main.c8c2c707.js"></script><link href="/embed-map/static/css/main.f9244f74.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RedSuburbs - Map</title>
+
+  <link rel="stylesheet" href="vendor/normalize.css"/>
+  <link rel="stylesheet" href="vendor/leaflet-1.9.4.css"/>
+  <script src="vendor/leaflet-1.9.4.js"></script>
+  <!--<link rel="stylesheet" href="css/_all.css">-->
+  <link rel="stylesheet" href="css/_combined.css?v=1.0.0">
+  <style id="dynamic-css"></style>
+</head>
+<body>
+  <div id="map" class="map"></div>
+
+  <div class="SuburbQuickView__container">
+    <div class="SuburbQuickView" id="quick-view">
+      <div class="SuburbQuickView__meta-container">
+        <div class="SuburbQuickView__crime-rank SuburbQuickView__stat">Crime Rank: <span class="val__crime-rank">10</span></div>
+        <h3 class="SuburbQuickView__title val__suburb-name">Suburb Name</h3>
+
+        <div class="SuburbQuickView__stat">Population: <span class="val__suburb-pops"></span></div>
+        <div class="SuburbQuickView__stat">Total crimes: <span class="val__suburb-total-crimes"></span></div>
+      </div>
+
+      <div class="SuburbQuickView__crime-container">
+        <h4 class="SuburbQuickView__sub-title">Top crime types:</h4>
+        <div class="SuburbQuickView__crimes">
+          <div class="SuburbQuickView__crime">
+            <div class="SuburbQuickView__crime-name">{crime_type}</div>
+            <div class="SuburbQuickView__crime-val">{crime[crime_type].toLocaleString()}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="SuburbQuickView__profile-notice">
+        Double tap to open full profile
+      </div>
+    </div>
+  </div>
+
+  <div class="Legend" id="legend">
+    <button class="Legend__open-btn">?</button>
+    <div class="Legend__content Legend__el--hidden">
+      <h4 class="Legend__title">Legend</h4>
+      <div class="Legend__ranks">
+        <div class="Legend__rank Legend__rank--red">High Crime</div>
+        <div class="Legend__rank">Low Crime</div>
+      </div>
+
+      <h5 class="Legend__sub-title">Crime Rank</h5>
+      <p class="Legend__text">Higher number means higher crime levels adjusted for severity in proportion to population.</p>
+
+      <button class="Legend__close-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="vendor/tinycolor.js"></script>
+  <script src="js/classes/Util.js?v=1.0.0"></script>
+  <script src="js/classes/MapLegend.js?v=1.0.0"></script>
+  <script src="js/classes/MapView.js?v=1.0.0"></script>
+  <script src="js/classes/QuickView.js?v=1.0.0"></script>
+  <script src="js/main.js?v=1.0.0"></script>
+</body>
+</html>
