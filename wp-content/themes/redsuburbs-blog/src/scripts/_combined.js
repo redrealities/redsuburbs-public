@@ -296,6 +296,8 @@ function makeSuburbKey(suburb_name) {
       }));
     });
     const type_search_prefix = {
+      'nations': 'nation ',
+      'states': 'state ',
       'suburbs': 'suburb ',
       'lgas': 'lga ',
       'postcodes': 'postcode ',
@@ -317,7 +319,11 @@ function makeSuburbKey(suburb_name) {
           e.preventDefault();
           // send message to map iframe
           console.log(item);
-          window.location.href = `/${s.type}/${s.key}/`;
+          if(s.type === 'nations') {
+            window.location.href = '/national/'
+          } else {
+            window.location.href = `/${s.type}/${s.key}/`;
+          }
         });
         list.appendChild(item);
       });
@@ -342,7 +348,11 @@ function makeSuburbKey(suburb_name) {
       const items = filterItems(query);
       if(items.length > 0) {
         const s = items[0];
-        window.location.href = `/${s.type}/${s.key}/`;
+        if(s.type === 'nations') {
+          window.location.href = '/national/'
+        } else {
+          window.location.href = `/${s.type}/${s.key}/`;
+        }
       }
     });
   });

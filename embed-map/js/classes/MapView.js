@@ -55,7 +55,7 @@ class MapView {
       // crimeRank = suburb.properties.mcr;
       fillColor = this.getSuburbColor(crimeRank);
     } else if(suburb.properties.type === 'state') {
-      crimeRank = 80 + crimeRank * 4;
+      crimeRank = 80 + (crimeRank/6 * 20);
       fillColor = this.getAreaColor(crimeRank);
     } else {
       fillColor = this.getAreaColor(crimeRank);

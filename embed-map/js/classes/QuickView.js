@@ -13,7 +13,7 @@ class QuickView {
 
   show(suburb) {
     this.el.classList.add('SuburbQuickView--visible');
-    this.parts.crime_rank.innerHTML = suburb.properties.crime_rank + '/' + (suburb.properties.type === 'state' ? '5' : '100');
+    this.parts.crime_rank.innerHTML = suburb.properties.crime_rank + '/' + (suburb.properties.type === 'state' ? '6' : '100');
     this.parts.suburb_name.innerHTML = suburb.properties.name;
     this.parts.suburb_pops.innerHTML = suburb.properties.population.toLocaleString();
     this.parts.suburb_total_crimes.innerHTML = suburb.properties.crime['total'].toLocaleString();
