@@ -1,5 +1,6 @@
 (async function() {
   const dataPath = '/data';
+  const urlBase = Util.isDev ? '/' : '/embed-map/';
   const dataLayers = [
     { name: 'suburbs', baseUrl: '/groups/', zoom: [10, Infinity] },
     { name: 'lgas', baseUrl: '/lga-groups/', zoom: [6, 9] },
@@ -158,7 +159,8 @@
   }
 
   function setDynamicUrl() {
-    let url = `/?lat=${center.lat}&lng=${center.lng}&zoom=${zoom}`;
+
+    let url = `${urlBase}?lat=${center.lat}&lng=${center.lng}&zoom=${zoom}`;
     if(layer !== 'auto') url += `&layer=${layer}`;
     //navigate(url);
     window.history.pushState({}, '', url);
