@@ -160,14 +160,14 @@
 
   function setDynamicUrl() {
 
-    let url = `${urlBase}?lat=${center.lat}&lng=${center.lng}&zoom=${zoom}`;
+    let url = `?lat=${center.lat}&lng=${center.lng}&zoom=${zoom}`;
     if(layer !== 'auto') url += `&layer=${layer}`;
     //navigate(url);
-    window.history.pushState({}, '', url);
+    window.history.pushState({}, '', urlBase + url);
     if(window.parent !== null) {
       window.parent.postMessage(JSON.stringify({
         type: 'map-url-change',
-        url
+        url: '/' + url
       }), '*');
     }
   }
