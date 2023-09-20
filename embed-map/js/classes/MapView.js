@@ -1,7 +1,8 @@
 class MapView {
-  constructor(center, zoom) {
+  constructor(center, zoom, layer, lens) {
     this.selectedSuburb = '';
     this.baseProfilesUrl = Util.isDev ? 'http://192.168.1.7:8080' : '//redsuburbs.com.au';
+    this.lens = lens;
 
     const map = L.map('map', {
       zoomControl: false,
@@ -20,8 +21,9 @@ class MapView {
     }).addTo(map);
 
     this.map = map;
-    this.quickView = new QuickView();
+    this.quickView = new QuickView(lens);
     this.mapLegend = new MapLegend();
+    this.layerSwitch = new LayerSwitch(layer, lens);
   }
 
   getAreaColor(crimeRank) {
@@ -47,6 +49,11 @@ class MapView {
     //if(props.crimeData === null) return {};
     if(suburb === undefined) return {};
     let crimeRank = suburb.properties.crime_rank;
+    if(this.lens === 'vr') {
+      crimeRank = suburb.properties.violent_rank;
+    } else if(this.lens === 'pr') {
+      crimeRank = suburb.properties.property_rank;
+    }
     let fillColor = 'rgba(0,0,0,0)';
     if(suburb.properties.type === 'suburb') {
       // crimeRank = suburb.properties.mcr;

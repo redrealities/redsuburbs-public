@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="vendor/normalize.css"/>
   <link rel="stylesheet" href="vendor/leaflet-1.9.4.css"/>
   <script src="vendor/leaflet-1.9.4.js"></script>
-  <!--<link rel="stylesheet" href="css/_all.css">-->
-  <link rel="stylesheet" href="css/_combined.css?v=1.0.0">
+  <link rel="stylesheet" href="css/_all.css">
+  <!--<link rel="stylesheet" href="css/_combined.css?v=1.0.1">-->
   <style id="dynamic-css"></style>
 </head>
 <body>
@@ -18,7 +18,7 @@
   <div class="SuburbQuickView__container">
     <div class="SuburbQuickView" id="quick-view">
       <div class="SuburbQuickView__meta-container">
-        <div class="SuburbQuickView__crime-rank SuburbQuickView__stat">Crime Rank: <span class="val__crime-rank">10</span></div>
+        <div class="SuburbQuickView__crime-rank SuburbQuickView__stat"><span class="val__crime-type">Crime Rank</span>: <span class="val__crime-rank">10</span></div>
         <h3 class="SuburbQuickView__title val__suburb-name">Suburb Name</h3>
 
         <div class="SuburbQuickView__stat">Population: <span class="val__suburb-pops"></span></div>
@@ -59,9 +59,34 @@
     </div>
   </div>
 
+  <div class="LayerSwitch" id="layer-switch">
+    <button class="LayerSwitch__toggle-btn btn">
+      <img class="LayerSwitch__toggle-icon" src="images/layers-icon.svg" alt="Layer switch icon">
+      Layer: <span class="LayerSwitch__toggle-val">Auto</span>
+    </button>
+    <div class="LayerSwitch__option-box info-box">
+      <h5 class="LayerSwitch__sub-title">Layer</h5>
+      <div class="LayerSwitch__options">
+        <button class="LayerSwitch__option-btn LayerSwitch__option-btn--active" data-option="layer" data-value="auto">Auto</button>
+        <button class="LayerSwitch__option-btn" data-option="layer" data-value="states">States</button>
+        <button class="LayerSwitch__option-btn" data-option="layer" data-value="lgas">LGAs</button>
+        <button class="LayerSwitch__option-btn" data-option="layer" data-value="suburbs">Suburbs</button>
+      </div>
+      <h5 class="LayerSwitch__sub-title">Lens</h5>
+      <div class="LayerSwitch__options">
+        <button class="LayerSwitch__option-btn LayerSwitch__option-btn--active" data-option="lens" data-value="cr">Crime Rank</button>
+        <button class="LayerSwitch__option-btn" data-option="lens" data-value="pr">Property Crimes</button>
+        <button class="LayerSwitch__option-btn" data-option="lens" data-value="vr">Violent Crimes</button>
+      </div>
+    </div>
+  </div>
+
   <script src="vendor/tinycolor.js"></script>
   <script src="js/classes/Util.js?v=1.0.1"></script>
+  <script>const PRO_URL = Util.isDev ? 'http://192.168.1.7:8081' : 'https://pro.redsuburbs.com.au';</script>
+  <script src="js/classes/RRAccount.js?v=1.0.1"></script>
   <script src="js/classes/MapLegend.js?v=1.0.1"></script>
+  <script src="js/classes/LayerSwitch.js?v=1.0.1"></script>
   <script src="js/classes/MapView.js?v=1.0.1"></script>
   <script src="js/classes/QuickView.js?v=1.0.1"></script>
   <script src="js/main.js?v=1.0.1"></script>

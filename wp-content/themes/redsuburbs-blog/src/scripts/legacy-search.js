@@ -3,6 +3,8 @@
   searchForms.forEach(async searchForm => {
     const searchInput = searchForm.querySelector('input');
     const resultsArea = searchForm.querySelector('.SuburbSearch__results');
+    // get custom event name from data attribute
+    const customEventName = searchForm.getAttribute('data-custom-event');
     // load suburb names
     const items = await fetch('/data/search_names.json').then(r => r.json());
     const searchItems = [];
@@ -37,10 +39,23 @@
           e.preventDefault();
           // send message to map iframe
           console.log(item);
+          let url = '';
           if(s.type === 'nations') {
-            window.location.href = '/national/'
+            url = '/national/'
           } else {
-            window.location.href = `/${s.type}/${s.key}/`;
+            url = `/${s.type}/${s.key}/`;
+          }
+          if(customEventName) {
+            document.dispatchEvent(new CustomEvent(customEventName, {
+              detail: {
+                url,
+                name: s.name,
+                type: s.type,
+                key: s.key,
+              }
+            }));
+          } else {
+            window.location.href = url;
           }
         });
         list.appendChild(item);
@@ -66,10 +81,23 @@
       const items = filterItems(query);
       if(items.length > 0) {
         const s = items[0];
+        let url = '';
         if(s.type === 'nations') {
-          window.location.href = '/national/'
+          url = '/national/'
         } else {
-          window.location.href = `/${s.type}/${s.key}/`;
+          url = `/${s.type}/${s.key}/`;
+        }
+        if(customEventName) {
+          document.dispatchEvent(new CustomEvent(customEventName, {
+            detail: {
+              url,
+              name: s.name,
+              type: s.type,
+              type: s.key,
+            }
+          }));
+        } else {
+          window.location.href = url;
         }
       }
     });

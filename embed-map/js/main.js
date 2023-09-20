@@ -11,18 +11,34 @@
   let lgaGroups = [];
   let statesData = null;
   let layer = 'auto';
+  let lens = 'cr';
   let bounds = L.latLngBounds(L.latLng(0,0), L.latLng(0,0));
   let center = {lat: -24.4871, lng: 138.8232};
   let zoom = 4;
 
   const dynamicCSSEl = document.getElementById('dynamic-css');
   const urlParams = new URLSearchParams(window.location.search);
+
+  const hasStartPosInUrl = urlParams.has('lat') && urlParams.has('lng') && urlParams.has('zoom');
+  if(!hasStartPosInUrl && rrAccount.premium) {
+    const response = await rrAccount.getStartLocation();
+    if(('lat' in response && 'lng' in response && 'zoom' in response)
+      && (response.lat !== 0 && response.lng !== 0 && response.zoom !== 0)) {
+      center = { lat: response.lat, lng: response.lng };
+      zoom = response.zoom;
+    }
+  }
+
   zoom = parseInt(urlParams.get('zoom') || zoom);
   center.lat = parseFloat(urlParams.get('lat') || center.lat);
   center.lng = parseFloat(urlParams.get('lng') || center.lng);
   layer = urlParams.get('layer') || layer;
+  lens = urlParams.get('lens') || lens;
 
-  const mapView = new MapView([center.lat, center.lng], zoom);
+  // Only PLUS and PRO users can access other lenses
+  if(lens !== 'cr' && (!rrAccount.authenticated || !rrAccount.premium)) rrAccount.requestUpgrade();
+
+  const mapView = new MapView([center.lat, center.lng], zoom, layer, lens);
   mapView.selectedSuburb = urlParams.get('suburb');
 
   async function loadGroupIndex(kind) { // kind = 'groups' | 'lga-groups'
@@ -162,6 +178,7 @@
 
     let url = `?lat=${center.lat}&lng=${center.lng}&zoom=${zoom}`;
     if(layer !== 'auto') url += `&layer=${layer}`;
+    if(lens !== 'cr') url += `&lens=${lens}`;
     //navigate(url);
     window.history.pushState({}, '', urlBase + url);
     if(window.parent !== null) {
