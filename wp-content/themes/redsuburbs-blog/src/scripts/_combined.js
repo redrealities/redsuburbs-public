@@ -247,7 +247,7 @@ class RRAccount {
     if(counter >= 15) {
       // show upgrade modal
       document.querySelector('.upgrade-modal').classList.add('modal--active');
-      dataLayer.push({'event': 'profile-monthly-limit-reached'});
+      gtag('event', 'profile_monthly_limit_reached', {counter, authenticated: this.authenticated, location: document.location.href});
     }
   }
 
@@ -266,7 +266,7 @@ class RRAccount {
     }
 
     checksCounter++;
-    dataLayer.push({'event': 'countable-entity-profile-viewed'});
+    gtag('event', 'countable_entity_profile_viewed', {checksCounter, authenticated: this.authenticated, location: document.location.href});
     localStorage.setItem('profileChecksCounter', checksCounter);
     localStorage.setItem('profileChecksMonth', checksMonth);
 
@@ -756,9 +756,9 @@ const rrAccount = new RRAccount();
     }
   } else {
     // FREE users
-    printBtn.addEventListener('click', () => window.location.href = '/upgrade'); // or login
-    compareBtn.addEventListener('click', () => window.location.href = '/upgrade'); // or login
-    if(saveBtn !== null) saveBtn.addEventListener('click', () => window.location.href = '/upgrade'); // or login
+    printBtn.addEventListener('click', () => window.location.href = '/upgrade#feature-printable-profiles'); // or login
+    compareBtn.addEventListener('click', () => window.location.href = '/upgrade#feature-side-by-side-compare'); // or login
+    if(saveBtn !== null) saveBtn.addEventListener('click', () => window.location.href = '/upgrade#feature-saved-locations'); // or login
   }
 
   ctxs.forEach(ctx => {

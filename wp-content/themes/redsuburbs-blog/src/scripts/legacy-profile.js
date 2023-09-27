@@ -65,9 +65,9 @@
     }
   } else {
     // FREE users
-    printBtn.addEventListener('click', () => window.location.href = '/upgrade'); // or login
-    compareBtn.addEventListener('click', () => window.location.href = '/upgrade'); // or login
-    if(saveBtn !== null) saveBtn.addEventListener('click', () => window.location.href = '/upgrade'); // or login
+    printBtn.addEventListener('click', () => window.location.href = '/upgrade#feature-printable-profiles'); // or login
+    compareBtn.addEventListener('click', () => window.location.href = '/upgrade#feature-side-by-side-compare'); // or login
+    if(saveBtn !== null) saveBtn.addEventListener('click', () => window.location.href = '/upgrade#feature-saved-locations'); // or login
   }
 
   ctxs.forEach(ctx => {
