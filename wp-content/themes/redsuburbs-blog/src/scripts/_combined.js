@@ -219,7 +219,7 @@ class RRAccount {
     this.ctrlMenu = null;
     this.userDetails = this.authenticateUser();
     this.authenticated = this.userDetails !== null;
-    this.premium = this.authenticated && ['plus', 'pro'].includes(this.userDetails.accessLevel);
+    this.premium = this.authenticated && ['unlimited'].includes(this.userDetails.accessLevel);
     document.body.classList.toggle('rr-account--authenticated', this.authenticated);
     document.body.classList.toggle('rr-account--premium', this.premium);
   }
@@ -440,7 +440,15 @@ class RRAccount {
     form.querySelector('[data-name=level]').textContent = this.userDetails.accessLevel.toUpperCase();
     form.querySelector('[data-name=level]').dataset.value = this.userDetails.accessLevel;
     Array.from(form.querySelectorAll('[data-name=id]')).forEach(el => el.value = this.userDetails.id);
-    form.querySelector('[data-name=expires]').textContent = this.userDetails.accessExpireDate;
+
+    // convert from unix timestamp
+    const expireDate = new Date(this.userDetails.accessExpireDate * 1000);
+    // If expired then say so
+    if(expireDate < new Date()) {
+      form.querySelector('[data-name=expires]').textContent = 'Expired';
+    } else {
+      form.querySelector('[data-name=expires]').textContent = expireDate.toLocaleDateString();
+    }
 
     const el = form.querySelector('[data-name=start-position]');
     if(this.premium) {
@@ -463,7 +471,7 @@ class RRAccount {
         el.appendChild(resetBtn);
       });
     } else {
-      el.innerHTML = "Require Non-Free Account";
+      el.innerHTML = "Require Unlimited Account";
     }
   }
 
@@ -520,6 +528,14 @@ class RRAccount {
     }
     const checkoutForm = document.querySelector('.AccountForm--checkout');
     const checkoutFormClientRef = checkoutForm.querySelector('[name=client_reference_id]');
+    const checkoutFormPriceId = checkoutForm.querySelector('[name=price_id]');
+    // get duration from GET attribute
+    const duration = new URLSearchParams(window.location.search).get('duration');
+    if(duration === '28') {
+      const input = form.querySelector('.AccountForm__radio-input[value="28"]');
+      input.checked = true;
+    }
+
     const errorEl = form.querySelector('.AccountForm__error');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -550,6 +566,11 @@ class RRAccount {
       if(data.success) {
         const userId = data.userId;
         checkoutFormClientRef.value = userId;
+        // get checked duration
+        const duration = form.querySelector('.AccountForm__radio-input:checked').value;
+        if(duration === '28') {
+          checkoutFormPriceId.value = checkoutFormPriceId.dataset['price28'];
+        }
         checkoutForm.submit();
       } else {
         errorEl.innerHTML = data.message;
