@@ -70,6 +70,7 @@
     if(saveBtn !== null) saveBtn.addEventListener('click', () => window.location.href = '/upgrade#feature-saved-locations'); // or login
   }
 
+  // TRENDS CHARTS
   ctxs.forEach(ctx => {
     let data = total_crimes_trend_data;
     if(ctx.classList.contains('SuburbProfilePage__trend-canvas--violent')) {
@@ -95,6 +96,31 @@
       data: data,
       options: {
         responsive: true
+      },
+    });
+  });
+
+  // COMPARE CHARTS
+  const ctxs2 = document.querySelectorAll('.SuburbProfilePage__compare-canvas');
+  ctxs2.forEach(ctx => {
+    let data = total_crimes_compare_data;
+    if(ctx.classList.contains('SuburbProfilePage__compare-canvas--violent')) {
+      data = violent_crimes_compare_data;
+    } else if(ctx.classList.contains('SuburbProfilePage__compare-canvas--property')) {
+      data = property_crimes_compare_data;
+    }
+
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        // plugins: {
+        //   legend: {
+        //     display: false
+        //   },
+        // },
       },
     });
   });
