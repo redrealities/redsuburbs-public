@@ -1,7 +1,7 @@
 class MapView {
   constructor(center, zoom, layer, lens) {
     this.selectedSuburb = '';
-    this.baseProfilesUrl = Util.isDev ? 'http://192.168.1.7:8080' : '//redsuburbs.com.au';
+    this.baseProfilesUrl = Util.isDev ? 'http://redsuburbs.com.au.local' : '//redsuburbs.com.au';
     this.lens = lens;
 
     const map = L.map('map', {

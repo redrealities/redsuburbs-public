@@ -30,7 +30,7 @@ class RRAccount {
 
   checkProfileChecksLimit(counter) {
     if(this.authenticated && this.premium) return;
-    if(counter >= 15) {
+    if(counter >= 30) { // 15 is old limit, increased by 2x
       // show upgrade modal
       document.querySelector('.upgrade-modal').classList.add('modal--active');
       gtag('event', 'profile_monthly_limit_reached', {counter, authenticated: this.authenticated, location: document.location.href});
