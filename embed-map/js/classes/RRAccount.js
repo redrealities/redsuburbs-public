@@ -1,4 +1,19 @@
 const PRO_API_URL = PRO_URL + '/wp-json';
+const PROPERTY_CRIME_TYPES = [
+  "Arson",
+  "Property damage",
+  "Burglary/Break and enter",
+  "Theft",
+  "Motor Vehicle Theft",
+];
+const VIOLENT_CRIME_TYPES = [
+  "Homicide and related offences",
+  "Assault and related offences",
+  "Sexual offences",
+  "Abduction and related offences",
+  "Robbery",
+  "Blackmail and extortion",
+];
 
 class RRAccount {
   constructor() {
