@@ -15,7 +15,7 @@
 
   if(entityHeaders === null) return;
 
-  if(!(rrAccount.authenticated && ['plus', 'pro'].includes(rrAccount.userDetails.accessLevel))) {
+  if(!(rrAccount.authenticated && rrAccount.premium)) {
     // FREE users
     window.location.href = '/upgrade'; // or login
     return;
