@@ -95,7 +95,8 @@
       type: 'line',
       data: data,
       options: {
-        responsive: true
+        responsive: true,
+        aspectRatio: 1.5,
       },
     });
   });
@@ -116,6 +117,7 @@
       data: data,
       options: {
         responsive: true,
+        aspectRatio: 1.5,
         // plugins: {
         //   legend: {
         //     display: false
