@@ -10,7 +10,7 @@ class MapView {
     }).setView(center, zoom);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
-      attribution: '© <a href="https://redrealities.com">RedRealities PTY LTD</a> | © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      attribution: '© <a href="https://redrealities.com">RedRealities PTY LTD</a> | © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="#" class="Legend__sources-link">Data sources</a>',
     }).addTo(map);
     L.control.zoom({
       position: 'bottomright'
