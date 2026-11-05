@@ -113,7 +113,6 @@ class RRAccount {
     this.handleAccountDetails();
 
     if(this.authenticated && this.premium) {
-      this.hideAds();
       this.handleSavedLocations();
     }
 
@@ -123,43 +122,6 @@ class RRAccount {
 
     const logoutBtns = Array.from(document.querySelectorAll('.util__logout-btn'));
     logoutBtns.forEach(btn => btn.addEventListener('click', () => rrAccount.logout()));
-  }
-
-  checkProfileChecksLimit(counter) {
-    if(this.authenticated && this.premium) return;
-    if(counter >= 30) { // 15 is old limit, increased by 2x
-      // show upgrade modal
-      document.querySelector('.upgrade-modal').classList.add('modal--active');
-      gtag('event', 'profile_monthly_limit_reached', {counter, authenticated: this.authenticated, location: document.location.href});
-    }
-  }
-
-  addToProfileCheckCounter() {
-    let checksCounter = localStorage.getItem('profileChecksCounter');
-    if(!checksCounter) {
-      checksCounter = 0;
-    } else {
-      checksCounter = parseInt(checksCounter);
-    }
-    let checksMonth = localStorage.getItem('profileChecksMonth');
-    let currentMonth = new Date().getMonth().toString();
-    if(checksMonth !== currentMonth) {
-      checksMonth = currentMonth;
-      checksCounter = 0;
-    }
-
-    checksCounter++;
-    gtag('event', 'countable_entity_profile_viewed', {checksCounter, authenticated: this.authenticated, location: document.location.href});
-    localStorage.setItem('profileChecksCounter', checksCounter);
-    localStorage.setItem('profileChecksMonth', checksMonth);
-
-    this.checkProfileChecksLimit(checksCounter);
-  }
-
-  hideAds() {
-    const styleEl = document.createElement('style');
-    styleEl.innerHTML = '.adsbygoogle { display: none !important; }';
-    document.head.appendChild(styleEl);
   }
 
   authenticateUser() {
