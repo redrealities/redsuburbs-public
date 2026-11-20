@@ -148,7 +148,7 @@ class RRAccount {
 
   requestUpgrade() {
     // redirect top frame to /upgrade
-    window.top.location.href = 'https://redsuburbs.com.au/upgrade';
+    window.top.location.href = '/upgrade';
   }
 
   // TODO: Move to separate class, or not, maybe it belongs here.

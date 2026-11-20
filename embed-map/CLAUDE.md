@@ -8,6 +8,7 @@ The embeddable RedSuburbs crime map: a static Leaflet page. On production it is 
 
 ## Commands
 
+- Preferred: run the map inside the full site with the `redsuburbs-dev` workspace (`make up`), which mounts this repo at `/embed-map` and the data at `/data`.
 - `./server.sh`: serve the repo root on http://localhost:3000 (`python3 -m http.server 3000`). Data is fetched from absolute `/data/...` paths, so the page has to be served from the repo root.
 - `python3 tools/combine-css.py` (run from the repo root): inlines the `@import`s in `css/_all.css` into `css/_combined.css`. `index.html` currently loads `_all.css`, and the `_combined.css` link is commented out.
 - `tools/combine-js.py` is a leftover from another project (it points at `src/scripts/`, which doesn't exist here) and does nothing useful.
@@ -25,11 +26,11 @@ The scripts in `index.html` share globals, so their load order matters: `Util` â
 - **`MapView`**: the Leaflet map, styling (red fill intensity from the rank of the active lens), hover/click handlers. Clicking a feature opens its profile at `{redsuburbs.com.au}/{suburbs|lgas|states}/{key}` in `_top`. On mobile widths, the first tap highlights the feature and the second tap opens the profile.
 - **`LayerSwitch`**: changing the layer or lens sets `window.location.search`, which reloads the whole page. Lens and layer are fixed for the lifetime of the page.
 - **`QuickView`**: fills in the hover panel, whose markup is already in `index.html`.
-- **`RRAccount`** (`js/classes/RRAccount.js`): auth via JWT stored in `localStorage` against the WordPress PRO API (`PRO_URL + '/wp-json'`). Non-premium users who pick a lens other than `cr` get `requestUpgrade()`. This file used to be a symlink to `redsuburbs-blog/src/scripts/legacy-account.js` and is now a copy, so changes may need to be synced with the blog project.
+- **`RRAccount`** (`js/classes/RRAccount.js`): auth via JWT stored in `localStorage` against the WordPress PRO API (`PRO_URL + '/wp-json'`). Non-premium users who pick a lens other than `cr` get `requestUpgrade()`. Production deploys (`redsuburbs-deploy/deploy.sh`) and the dev workspace replace it with `redsuburbs-blog/src/scripts/legacy-account.js`, so the blog copy is what actually runs; keep the two in sync.
 
 ## Conventions
 
-- **Dev vs prod**: `Util.isDev` is true whenever the URL doesn't contain `redsuburbs.com.au`. It switches `PRO_URL` (dev: `http://192.168.1.7:8081`), the profile base URL (`http://redsuburbs.com.au.local`) and the URL base path (`/` vs `/embed-map/`).
+- **Environments**: `Util.env` is `local` when the host ends with `.localhost` (the `redsuburbs-dev` Docker workspace serves the map at `http://redsuburbs.localhost/embed-map/`), `standalone` on port 3000 (`server.sh`), and `prod` otherwise. It sets `PRO_URL` (`Util.proUrl`: `pro.<host>` locally, `https://pro.redsuburbs.com.au` in prod), the URL base path (`/` standalone, `/embed-map/` otherwise) and profile links (root-relative, except standalone, which links to `http://redsuburbs.localhost`). Don't hardcode hosts elsewhere.
 - **Cache busting**: script tags in `index.html` carry `?v=X.Y.Z`. When you ship JS changes, bump the version on all of them together.
 - **CSS**: BEM-style class names (`Block__element--modifier`), one file per UI element under `css/elements/`. New files must be registered in `css/_all.css`.
 - **Data source credits**: the publisher list in the legend (`index.html`, `.Legend__sources`) is hand-copied from `getDataSources()` in the blog theme's `includes/data-sources.php`. Keep the two in sync, and update the data year in the legend text when the theme's `AC_DATA_YEAR` changes.

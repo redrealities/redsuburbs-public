@@ -1,6 +1,6 @@
 (async function() {
   const dataPath = '/data';
-  const urlBase = Util.isDev ? '/' : '/embed-map/';
+  const urlBase = Util.env === 'standalone' ? '/' : '/embed-map/';
   const dataLayers = [
     { name: 'suburbs', baseUrl: '/groups/', zoom: [10, Infinity] },
     { name: 'lgas', baseUrl: '/lga-groups/', zoom: [6, 9] },

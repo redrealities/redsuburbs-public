@@ -1,7 +1,9 @@
 class MapView {
   constructor(center, zoom, layer, lens) {
     this.selectedSuburb = '';
-    this.baseProfilesUrl = Util.isDev ? 'http://redsuburbs.com.au.local' : '//redsuburbs.com.au';
+    // The map is embedded on the same origin as the site, so profile links are root-relative.
+    // Standalone (server.sh) has no site behind it: link to the local dev workspace.
+    this.baseProfilesUrl = Util.env === 'standalone' ? 'http://redsuburbs.localhost' : '';
     this.lens = lens;
 
     const map = L.map('map', {
